@@ -59,9 +59,8 @@ public class Main {
 
     private static void inputCoordinates() {
         Scanner in = new Scanner(System.in);
-        boolean firstInput = false;
-        boolean secondInput = false;
-        while (firstInput != true && secondInput != true) {
+
+        while (true) {
             try {
                 System.out.print("Enter \"X\" coordinate from 1 to 5: ");
                 coordinateX = in.nextInt();
@@ -143,8 +142,7 @@ public class Main {
                                     + ConsoleColors.WHITE_BOLD_BRIGHT
                                     + " " + field[i][j] + " |"
                                     + ConsoleColors.RESET);
-                }
-                else if (field[i][j].equals(hit)) {
+                } else if (field[i][j].equals(hit)) {
                     System.out.print(
                             ConsoleColors.BLUE_BACKGROUND
                                     + ConsoleColors.WHITE_BOLD_BRIGHT
