@@ -13,9 +13,9 @@ public class Main {
 
     private static void initScheduleArray() {
         schedule[0][0] = "Sunday";
-        schedule[0][1] = "do home work";
+        schedule[0][1] = "do something for Sunday";
         schedule[1][0] = "Monday";
-        schedule[1][1] = "go to courses; watch a film";
+        schedule[1][1] = "do something for Monday";
         schedule[2][0] = "Tuesday";
         schedule[2][1] = "do something for Tuesday";
         schedule[3][0] = "Wednesday";
@@ -33,6 +33,8 @@ public class Main {
         for (int i = 0; i < schedule.length; i++) {
             for (int j = 0; j < schedule[i].length; j++) {
                 if (schedule[i][j].equalsIgnoreCase(day)) {
+                    row = i;
+                    column = j;
                     return true;
                 }
             }
@@ -41,29 +43,27 @@ public class Main {
     }
 
 
-    private static void changeSchedule(String day, String value) {
-        for (int i = 0; i < schedule.length; i++) {
-            for (int j = 0; j < schedule[i].length; j++) {
-                if (schedule[i][j].equalsIgnoreCase(day)) {
-                    schedule[i][j + 1] = value;
-                }
-            }
+    private static void changeSchedule(String input) {
+        String[] tempArray = input.split(" ");
+        String day = tempArray[tempArray.length - 1];
+        if (checkIfDayExistInArray(day)) {
+            System.out.printf("Please, input new tasks for %s \n", day);
+            input = in.nextLine().trim();
+            schedule[row][column + 1] = input;
+            System.out.println("Successfully changed");
+            showToDoItem();
+            getUserInput();
+        } else {
+            System.out.println("Sorry, I don't understand you, please try again");
+            getUserInput();
         }
-        System.out.println("Successfully changed");
-        showToDoItem(day);
-        getUserInput();
+
     }
 
-    private static void showToDoItem(String day) {
-        for (int i = 0; i < schedule.length; i++) {
-            for (int j = 0; j < schedule[i].length; j++) {
-                if (schedule[i][j].equalsIgnoreCase(day)) {
-                    String arrayDay = schedule[i][j];
-                    String arrayTodo = schedule[i][j + 1];
-                    System.out.printf("Your tasks for %s: %s \n", arrayDay, arrayTodo);
-                }
-            }
-        }
+    private static void showToDoItem() {
+        String arrayDay = schedule[row][column];
+        String arrayTodo = schedule[row][column + 1];
+        System.out.printf("Your tasks for %s: %s \n", arrayDay, arrayTodo);
     }
 
     private static void getUserInput() {
@@ -72,26 +72,17 @@ public class Main {
 
         if (input.equalsIgnoreCase("exit")) {
             System.out.println("App exit");
+            System.exit(0);
             return;
         }
 
 
         if (input.contains("change")) {
-            String[] tempArray = input.split(" ");
-            String day = tempArray[tempArray.length - 1];
-            if (checkIfDayExistInArray(day)) {
-                System.out.printf("Please, input new tasks for %s \n", day);
-                input = in.nextLine().trim();
-                changeSchedule(day, input);
-            } else {
-                System.out.println("Sorry, I don't understand you, please try again");
-                getUserInput();
-            }
-
+            changeSchedule(input);
         }
 
         if (checkIfDayExistInArray(input)) {
-            showToDoItem(input);
+            showToDoItem();
             getUserInput();
         } else {
             System.out.println("Sorry, I don't understand you, please try again");
