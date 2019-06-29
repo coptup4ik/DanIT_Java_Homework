@@ -47,7 +47,7 @@ public class Main {
         String[] tempArray = input.split(" ");
         String day = tempArray[tempArray.length - 1];
         if (checkIfDayExistInArray(day)) {
-            System.out.printf("Please, input new tasks for %s \n", day);
+            System.out.printf("Please, input new tasks for %s :", schedule[row][column]);
             input = in.nextLine().trim();
             schedule[row][column + 1] = input;
             System.out.println("Successfully changed");
@@ -57,7 +57,6 @@ public class Main {
             System.out.println("Sorry, I don't understand you, please try again");
             getUserInput();
         }
-
     }
 
     private static void showToDoItem() {
