@@ -24,8 +24,6 @@ public class Pet {
     }
 
 
-
-
     public void eat() {
         System.out.println("Я кушаю!");
     }

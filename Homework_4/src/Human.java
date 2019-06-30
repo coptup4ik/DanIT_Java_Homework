@@ -1,5 +1,6 @@
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Human {
     private String name;
@@ -41,6 +42,21 @@ public class Human {
     public void describePet(){
         String trickLevel = pet.trickLevel > 50 ? "очень хитрый" : "почти не хитрый";
         System.out.printf("У меня есть %s, ему %d лет, он %s \n",pet.species,pet.age,trickLevel);
+    }
+
+    public boolean feedPet(boolean isTimeToFeed){
+        if (isTimeToFeed){
+            System.out.println("Питомец накормлен");
+            return true;
+        }
+
+        if (pet.trickLevel > new Random().nextInt(101)){
+            System.out.printf("Хм... покормлю ка я %s\n",pet.nickname);
+            return true;
+        }else {
+            System.out.printf("Думаю,%s не голоден \n",pet.nickname);
+            return false;
+        }
     }
 
     @Override

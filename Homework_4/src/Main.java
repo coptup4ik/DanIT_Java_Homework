@@ -11,6 +11,15 @@ public class Main {
         f1Dog.toString();
 
 
+
         f1Son.toString();
+        f1Son.feedPet(true);
+        f1Son.feedPet(false);
+        f1Son.feedPet(false);
+        f1Son.feedPet(false);
+        f1Son.feedPet(false);
+        f1Son.feedPet(false);
+        f1Son.feedPet(false);
+        f1Son.feedPet(false);
     }
 }
