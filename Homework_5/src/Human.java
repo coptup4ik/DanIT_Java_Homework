@@ -1,0 +1,64 @@
+
+import java.util.Arrays;
+
+public class Human {
+    private String name;
+    private String surname;
+    private int year;
+    private int iq;
+    private Pet pet;
+    private Human mother;
+    private Human father;
+    private String[][] schedule;
+
+    public Human(){
+    }
+
+    public Human(String name, String surname, int year){
+        this.name = name;
+        this.surname = surname;
+        this.year = year;
+    }
+
+    public Human(String name, String surname, int year,Human father, Human mother){
+        this(name,surname,year);
+        this.mother = mother;
+        this.father = father;
+    }
+
+
+    public Human(String name, String surname, int year,Human father, Human mother,int iq,Pet pet){
+        this(name,surname,year, father, mother);
+        this.iq = iq;
+        this.pet = pet;
+    }
+
+
+    public void greetPet(){
+        System.out.printf("Привет,%s \n",pet.nickname);
+    }
+
+    public void describePet(){
+        String trickLevel = pet.trickLevel > 50 ? "очень хитрый" : "почти не хитрый";
+        System.out.printf("У меня есть %s, ему %d лет, он %s \n",pet.species,pet.age,trickLevel);
+    }
+
+    @Override
+    public String toString() {
+        System.out.printf("%s{name='%s',\n" +
+                "surname='%s',\n" +
+                "year=%d,\n" +
+                "iq=%d,\n" +
+                "mother=%s %s,\n" +
+                "father=%s %s,\n" +
+                "pet=%s{nickname='%s',\n" +
+                "        age=%d,\n" +
+                "        trickLevel=%d,\n" +
+                "        habits=[%s]}}\n",
+                this.getClass(),name,surname,year,iq,
+                mother.name,mother.surname,
+                father.name,father.surname,
+                pet.species,pet.nickname,pet.age,pet.trickLevel, Arrays.toString(pet.habits));
+        return "";
+    }
+}
